@@ -90,9 +90,8 @@ module Brcobranca
           # o (ultimos 2 digitos, virgula decimal assumida)
           parse.field :desconto, 240..252
 
-          # :valor_recebido, 253..265 # valor lancado em conta corrente
-          # (ultimos 2 digitos, virgula decimal assumida)
-          parse.field :valor_recebido, 253..265
+          # :valor_pago, 253..265 Soma entre: Valor Liquido + Tarifa
+          # parse.field :valor_pago, 253..265
 
           # :juros_mora, 266..278 # valor de mora e multa pagos pelo sacado
           # (ultimos 2 digitos, virgula decimal assumida)
@@ -102,6 +101,7 @@ module Brcobranca
 
           # : Valor Liquido, 305..317 Diferença entre: Valor Pago e Valor da
           #   Tarifa (Valor Pago – Valor da Tarifa)
+          parse.field :valor_recebido, 305..317
 
           # :Complemento do Movimento 318..325
           parse.field :motivo_ocorrencia, 318..325, ->(motivos) do
